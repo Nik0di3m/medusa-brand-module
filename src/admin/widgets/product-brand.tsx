@@ -36,8 +36,11 @@ const ProductBrandWidget = ({ data }: DetailWidgetProps<AdminProduct>) => {
   );
 };
 
-export const config = defineWidgetConfig({
-  zone: "product.details.before",
-});
+// Here is injected the widget configuration
+// This is the configuration for the widget that will be displayed in the product details page
+// All zones are documented in the docs https://docs.medusajs.com/resources/admin-widget-injection-zones#main
+// export const config = defineWidgetConfig({
+//   zone: "product.details.before",
+// });
 
 export default ProductBrandWidget;

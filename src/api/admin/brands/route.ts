@@ -1,4 +1,5 @@
 import { MedusaRequest, MedusaResponse } from "@medusajs/framework";
+import { del } from "framer-motion/client";
 import { skip } from "node:test";
 import { BRAND_MODULE } from "src/modules/brand";
 import BrandModuleService from "src/modules/brand/service";
@@ -6,6 +7,10 @@ import {
   CreateBrandInput,
   createBrandWorkflow,
 } from "src/workflows/create-brand";
+import {
+  DeleteBrandInput,
+  deleteBrandWorkflow,
+} from "src/workflows/delete-brand";
 
 // This is the router for the brand module
 // is in the path src/api/admin/brands/route.ts
@@ -48,5 +53,19 @@ export const GET = async (req: MedusaRequest, res: MedusaResponse) => {
     count,
     limit,
     offset,
+  });
+};
+
+export const DELETE = async (req: MedusaRequest, res: MedusaResponse) => {
+  const { id } = req.body as DeleteBrandInput;
+
+  const results = await deleteBrandWorkflow(req.scope).run({
+    input: {
+      id: id,
+    },
+  });
+
+  res.json({
+    brand: results,
   });
 };
